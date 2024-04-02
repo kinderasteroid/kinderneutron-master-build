@@ -13,10 +13,11 @@ RUN apt-get update && \
   
   # Install requirements
   RUN pip install --upgrade pip
+
   RUN pip install --upgrade pip setuptools wheel
   RUN pip install Django
   RUN pip install psycopg2-binary
-  RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
+  
   # RUN apt-get update && apt-get install -y \
   #   libsm6 \
   #   libxext6 \
@@ -28,6 +29,9 @@ RUN apt-get update && \
   RUN pip install -r requirements.txt
   # Create directories  
   RUN mkdir -p /root/workspace/src
+  RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
   COPY ./  /root/kinderneutron
   # Switch to project directory
   WORKDIR /root/kinderneutron
+  EXPOSE 8000
+  EXPOSE 8001
